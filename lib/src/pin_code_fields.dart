@@ -4,6 +4,7 @@ part of pin_code_fields;
 class PinCodeTextField extends StatefulWidget {
   /// The [BuildContext] of the application
   final BuildContext appContext;
+  final String? image;
 
   ///Box Shadow for Pincode
   final List<BoxShadow>? boxShadows;
@@ -264,6 +265,7 @@ class PinCodeTextField extends StatefulWidget {
     /// Default create internal [AutofillGroup]
     this.useExternalAutoFillGroup = false,
     this.scrollPadding = const EdgeInsets.all(20),
+    this.image = null,
   })  : assert(obscuringCharacter.isNotEmpty),
         super(key: key);
 
@@ -294,6 +296,7 @@ class _PinCodeTextFieldState extends State<PinCodeTextField>
   late Animation<Offset> _offsetAnimation;
 
   late Animation<double> _cursorAnimation;
+
   DialogConfig get _dialogConfig => widget.dialogConfig == null
       ? DialogConfig()
       : DialogConfig(
@@ -301,6 +304,7 @@ class _PinCodeTextFieldState extends State<PinCodeTextField>
           dialogContent: widget.dialogConfig!.dialogContent,
           dialogTitle: widget.dialogConfig!.dialogTitle,
           negativeText: widget.dialogConfig!.negativeText);
+
   PinTheme get _pinTheme => widget.pinTheme;
 
   Timer? _blinkDebounce;
@@ -842,35 +846,19 @@ class _PinCodeTextFieldState extends State<PinCodeTextField>
       result.add(
         Container(
             padding: _pinTheme.fieldOuterPadding,
+            decoration: widget.image != null
+                ? BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage("${widget.image}"),
+                      fit: BoxFit.fill,
+                    ),
+                  )
+                : BoxDecoration(),
             child: AnimatedContainer(
               curve: widget.animationCurve,
               duration: widget.animationDuration,
               width: _pinTheme.fieldWidth,
               height: _pinTheme.fieldHeight,
-              decoration: BoxDecoration(
-                color: widget.enableActiveFill
-                    ? _getFillColorFromIndex(i)
-                    : Colors.transparent,
-                boxShadow: (_pinTheme.activeBoxShadows != null ||
-                        _pinTheme.inActiveBoxShadows != null)
-                    ? _getBoxShadowFromIndex(i)
-                    : widget.boxShadows,
-                shape: _pinTheme.shape == PinCodeFieldShape.circle
-                    ? BoxShape.circle
-                    : BoxShape.rectangle,
-                borderRadius: borderRadius,
-                border: _pinTheme.shape == PinCodeFieldShape.underline
-                    ? Border(
-                        bottom: BorderSide(
-                          color: _getColorFromIndex(i),
-                          width: _pinTheme.borderWidth,
-                        ),
-                      )
-                    : Border.all(
-                        color: _getColorFromIndex(i),
-                        width: _pinTheme.borderWidth,
-                      ),
-              ),
               child: Center(
                 child: AnimatedSwitcher(
                   switchInCurve: widget.animationCurve,

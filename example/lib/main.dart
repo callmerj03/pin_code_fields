@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
         backgroundColor: Colors.white,
         scaffoldBackgroundColor: Colors.white,
       ),
-      home: const PinCodeVerificationScreen(
+      home: PinCodeVerificationScreen(
           phoneNumber:
               "+8801376221100"), // a random number, please don't call xD
     );
@@ -128,20 +128,15 @@ class _PinCodeVerificationScreenState extends State<PinCodeVerificationScreen> {
                 key: formKey,
                 child: Padding(
                     padding: const EdgeInsets.symmetric(
-                        vertical: 8.0, horizontal: 30),
+                        vertical: 8.0, horizontal: 16),
                     child: PinCodeTextField(
+                      image: "assets/rectangle.png",
                       appContext: context,
                       pastedTextStyle: TextStyle(
                         color: Colors.green.shade600,
                         fontWeight: FontWeight.bold,
                       ),
                       length: 6,
-                      obscureText: true,
-                      obscuringCharacter: '*',
-                      obscuringWidget: const FlutterLogo(
-                        size: 24,
-                      ),
-                      blinkWhenObscuring: true,
                       animationType: AnimationType.fade,
                       validator: (v) {
                         if (v!.length < 3) {
@@ -154,10 +149,10 @@ class _PinCodeVerificationScreenState extends State<PinCodeVerificationScreen> {
                         shape: PinCodeFieldShape.box,
                         borderRadius: BorderRadius.circular(5),
                         fieldHeight: 50,
-                        fieldWidth: 40,
+                        fieldWidth: 50,
                         activeFillColor: Colors.white,
                       ),
-                      cursorColor: Colors.black,
+                      cursorColor: Colors.white,
                       animationDuration: const Duration(milliseconds: 300),
                       enableActiveFill: true,
                       errorAnimationController: errorController,

@@ -46,6 +46,7 @@ flutter:
     - assets/verify.png
     - assets/otp.flr
     - assets/otp.gif
+    - assets/rectangle.png
   #  - images/a_dot_ham.jpeg
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
