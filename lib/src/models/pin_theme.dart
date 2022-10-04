@@ -52,7 +52,7 @@ class PinTheme {
   const PinTheme.defaults(
       {this.borderRadius = BorderRadius.zero,
       this.fieldHeight = 50,
-      this.fieldWidth = 40,
+      this.fieldWidth = 50,
       this.borderWidth = 2,
       this.fieldOuterPadding = EdgeInsets.zero,
       this.shape = PinCodeFieldShape.underline,

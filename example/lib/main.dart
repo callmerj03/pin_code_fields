@@ -148,8 +148,6 @@ class _PinCodeVerificationScreenState extends State<PinCodeVerificationScreen> {
                       pinTheme: PinTheme(
                         shape: PinCodeFieldShape.box,
                         borderRadius: BorderRadius.circular(5),
-                        fieldHeight: 50,
-                        fieldWidth: 50,
                         activeFillColor: Colors.white,
                       ),
                       cursorColor: Colors.white,
